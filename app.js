@@ -1,12 +1,8 @@
-// 1) Put your Worker URL here after you deploy it, e.g.:
-// const WORKER_URL = "https://court-proxy.<your-subdomain>.workers.dev";
-const WORKER_URL = "PASTE_YOUR_WORKER_URL_HERE";
+const API_URL = "https://csdi3.judicial.gov.tw/judbp/wkw/WHD1A03/QUERY.htm";
 
 const $ = (id) => document.getElementById(id);
 
 function rocDateTime(dudt, dutm) {
-  // dudt like "1141223" (ROC year 114 => 2025)
-  // dutm like "1030"
   if (!dudt || dudt.length !== 7) return "";
   const rocYear = parseInt(dudt.slice(0, 3), 10);
   const year = rocYear + 1911;
@@ -19,7 +15,6 @@ function rocDateTime(dudt, dutm) {
 
 function renderTable(items) {
   if (!items?.length) return "<p>No data</p>";
-
   const rows = items.map(x => `
     <tr>
       <td>${rocDateTime(x.dudt, x.dutm)}</td>
@@ -30,7 +25,6 @@ function renderTable(items) {
       <td>${x.dukd || ""}</td>
     </tr>
   `).join("");
-
   return `
     <table>
       <thead>
@@ -56,17 +50,45 @@ async function fetchData() {
   const crtid = $("crtid").value.trim();
   const crmyy = $("crmyy").value.trim();
 
-  if (!WORKER_URL || WORKER_URL.includes("PASTE_YOUR_WORKER_URL_HERE")) {
-    throw new Error("Set WORKER_URL in app.js first.");
+  const body = new URLSearchParams();
+  body.set("crtid", crtid);
+  body.set("crmyy", crmyy);
+
+  console.log("[direct] POST", API_URL, "body=", body.toString());
+
+  let res;
+  try {
+    res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json, text/plain, */*",
+      },
+      body,
+      // mode: "cors" is default
+    });
+  } catch (e) {
+    // This is where CORS often lands: "TypeError: Failed to fetch"
+    $("status").textContent = "";
+    $("error").textContent =
+      "Fetch failed (often CORS). Open DevTools Console for the exact CORS message.\n\n" +
+      String(e?.stack || e);
+    throw e;
   }
 
-  // We call the Worker with GET to keep it simple.
-  const url = `${WORKER_URL}?crtid=${encodeURIComponent(crtid)}&crmyy=${encodeURIComponent(crmyy)}&t=${Date.now()}`;
-
-  const res = await fetch(url, { method: "GET" });
+  console.log("[direct] response", res.status, res.statusText);
   if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
 
-  const json = await res.json();
+  const text = await res.text();
+  console.log("[direct] body preview", text.slice(0, 500));
+
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch (e) {
+    throw new Error("Response is not valid JSON (see Console for body preview).");
+  }
+
   $("out").innerHTML = renderTable(json.data);
   $("status").textContent = `OK. items: ${json.data?.length ?? 0}`;
 }
