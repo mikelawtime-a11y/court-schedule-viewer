@@ -1,12 +1,9 @@
 // GitHub Pages version (no direct API call due to CORS).
-// This page reads the JSON file that GitHub Actions writes:
-//   ./data/latest.json
+// Reads: ./data/latest.json (written by GitHub Actions)
 
 const $ = (id) => document.getElementById(id);
 
 function rocDateTime(dudt, dutm) {
-  // dudt like "1141223" (ROC year 114 => 2025)
-  // dutm like "1030"
   if (!dudt || dudt.length !== 7) return "";
 
   const rocYear = parseInt(dudt.slice(0, 3), 10);
@@ -34,7 +31,7 @@ function escapeHtml(s) {
 
 function renderTable(items) {
   if (!Array.isArray(items) || items.length === 0) {
-    return `<p>No data (maybe workflow hasn’t run yet).</p>`;
+    return `<p>No data (workflow may not have run yet, or returned empty).</p>`;
   }
 
   const rows = items.map(x => `
@@ -68,6 +65,7 @@ function renderTable(items) {
 function showError(msg) {
   $("status").textContent = "";
   $("error").textContent = msg;
+  console.error(msg);
 }
 
 function clearError() {
@@ -76,27 +74,33 @@ function clearError() {
 
 function showStatus(msg) {
   $("status").textContent = msg;
+  console.log(msg);
 }
 
 async function fetchData() {
   clearError();
   $("out").innerHTML = "";
-  showStatus("Loading...");
+  showStatus("Loading ./data/latest.json ...");
 
-  // Cache-bust so GitHub Pages doesn’t return an old file
+  // Cache-bust so Pages doesn’t serve an old file
   const url = `./data/latest.json?t=${Date.now()}`;
 
   let res;
   try {
     res = await fetch(url, { cache: "no-store" });
   } catch (e) {
-    showError("Failed to fetch latest.json (network error).\n\n" + String(e?.stack || e));
+    showError("Network error while fetching latest.json:\n\n" + String(e?.stack || e));
     return;
   }
 
   if (!res.ok) {
-    showError(`Cannot load ${url}\nHTTP ${res.status} ${res.statusText}\n\n` +
-      `Make sure you have committed data/latest.json and that GitHub Pages is deployed from the branch/root you expect.`);
+    showError(
+      `Cannot load ${url}\nHTTP ${res.status} ${res.statusText}\n\n` +
+      `Fix checklist:\n` +
+      `- data/latest.json exists in the repo (committed)\n` +
+      `- GitHub Pages is deploying the same branch where the file exists\n` +
+      `- Wait for Pages deploy to finish after the workflow commits`
+    );
     return;
   }
 
@@ -123,12 +127,7 @@ async function fetchData() {
 }
 
 // Button click
-$("btn").addEventListener("click", () => {
-  fetchData();
-});
+$("btn").addEventListener("click", fetchData);
 
-// Optional: auto-load once when page opens
-// (comment out if you want only button-click)
-window.addEventListener("load", () => {
-  fetchData();
-});
+// Auto-load once on page open (optional)
+window.addEventListener("load", fetchData);
