@@ -1,0 +1,26 @@
+name: Fetch court schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes (UTC)
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch API and save JSON
+        run: |
+          mkdir -p data
+          curl -sS -X POST "https://csdi3.judicial.gov.tw/judbp/wkw/WHD1A03/QUERY.htm" \
+            -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
+            --data "crtid=KSH&crmyy=112" \
+            > data/latest.json
+
+      - name: Commit updated JSON
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Update court schedule data"
+          add: "data/latest.json"
