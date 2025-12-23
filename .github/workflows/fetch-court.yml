@@ -3,7 +3,10 @@ name: Fetch court schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes (UTC)
+    - cron: "*/30 * * * *" # every 30 minutes (UTC)
+
+permissions:
+  contents: write
 
 jobs:
   fetch:
@@ -11,13 +14,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch API and save JSON
+      - name: Debug DNS (if it fails, this helps you see why)
         run: |
+          echo "### resolv.conf"
+          cat /etc/resolv.conf || true
+          echo "### getent hosts"
+          getent hosts csdi3.judicial.gov.tw || true
+
+      - name: Fetch API and save JSON
+        env:
+          CRTID: KSH
+          CRMYy: "112"
+          HOST: csdi3.judicial.gov.tw
+          FALLBACK_IP: 210.69.124.143
+        run: |
+          set -euo pipefail
           mkdir -p data
-          curl -sS -X POST "https://csdi3.judicial.gov.tw/judbp/wkw/WHD1A03/QUERY.htm" \
+
+          echo "Trying normal DNS..."
+          if curl -fsS --retry 6 --retry-delay 5 --retry-all-errors \
+            -X POST "https://csdi3.judicial.gov.tw/judbp/wkw/WHD1A03/QUERY.htm" \
             -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
-            --data "crtid=KSH&crmyy=112" \
-            > data/latest.json
+            --data "crtid=${CRTID}&crmyy=${CRMYy}" \
+            -o data/latest_raw.json ; then
+            echo "OK: normal DNS"
+          else
+            echo "Normal DNS failed. Trying --resolve fallback..."
+            curl -fsS --retry 6 --retry-delay 5 --retry-all-errors \
+              --resolve "${HOST}:443:${FALLBACK_IP}" \
+              -X POST "https://${HOST}/judbp/wkw/WHD1A03/QUERY.htm" \
+              -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
+              --data "crtid=${CRTID}&crmyy=${CRMYy}" \
+              -o data/latest_raw.json
+          fi
+
+          # Add updatedAt + validate JSON
+          python3 - <<'PY'
+          import json, datetime
+          p_in = "data/latest_raw.json"
+          p_out = "data/latest.json"
+          with open(p_in, "r", encoding="utf-8") as f:
+            j = json.load(f)
+          if j.get("status") != "SUCCESS":
+            raise SystemExit(f"API status not SUCCESS: {j.get('status')}, message={j.get('messageText')}")
+          j["updatedAt"] = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+          with open(p_out, "w", encoding="utf-8") as f:
+            json.dump(j, f, ensure_ascii=False, indent=2)
+          print("items:", len(j.get("data") or []))
+          PY
+
+          rm -f data/latest_raw.json
 
       - name: Commit updated JSON
         uses: EndBug/add-and-commit@v9
