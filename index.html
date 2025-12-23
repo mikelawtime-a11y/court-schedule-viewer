@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Court schedule viewer</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 24px; }
+    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:end; }
+    label { display:block; font-size:12px; opacity:.8; margin-bottom:4px; }
+    input { padding:10px; font-size:14px; width:140px; }
+    button { padding:10px 14px; font-size:14px; cursor:pointer; }
+    table { border-collapse: collapse; width:100%; margin-top:16px; }
+    th, td { border:1px solid #ddd; padding:8px; vertical-align:top; }
+    th { text-align:left; background:#f6f6f6; }
+    .muted { opacity:.75; }
+    .error { color:#b00020; white-space:pre-wrap; margin-top:12px; }
+  </style>
+</head>
+<body>
+  <h1>Court schedule viewer</h1>
+
+  <div class="row">
+    <div>
+      <label>crtid</label>
+      <input id="crtid" value="KSH" />
+    </div>
+    <div>
+      <label>crmyy</label>
+      <input id="crmyy" value="112" />
+    </div>
+    <button id="btn">Fetch</button>
+    <div class="muted" id="status"></div>
+  </div>
+
+  <div id="error" class="error"></div>
+  <div id="out"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
