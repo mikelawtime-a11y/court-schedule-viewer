@@ -3,7 +3,7 @@ name: Fetch court schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *" # every 30 minutes (UTC)
+    - cron: "7 0 * * *" # once a day (UTC)
 
 permissions:
   contents: write
