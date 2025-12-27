@@ -217,6 +217,19 @@
     {
       "crtid": "KSH",
       "sys": "民事",
+      "dpt": "宇",
+      "crmyy": "112",
+      "crmid": "金訴",
+      "crmno": "000001",
+      "dudt": "1150123",
+      "dutm": "1010",
+      "ducd": "0001",
+      "dunm": "第一法庭",
+      "dukd": "準備程序"
+    },
+    {
+      "crtid": "KSH",
+      "sys": "民事",
       "dpt": "光",
       "crmyy": "112",
       "crmid": "建上",
@@ -346,5 +359,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2025-12-26T03:52:47Z"
+  "updatedAt": "2025-12-27T03:51:10Z"
 }
