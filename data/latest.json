@@ -8,19 +8,6 @@
   "data": [
     {
       "crtid": "KSH",
-      "sys": "刑事",
-      "dpt": "強",
-      "crmyy": "112",
-      "crmid": "金上重更二",
-      "crmno": "000002",
-      "dudt": "1141230",
-      "dutm": "1000",
-      "ducd": "0005",
-      "dunm": "第五法庭",
-      "dukd": "審理"
-    },
-    {
-      "crtid": "KSH",
       "sys": "民事",
       "dpt": "地",
       "crmyy": "112",
@@ -359,5 +346,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2025-12-30T03:58:39Z"
+  "updatedAt": "2025-12-31T03:58:29Z"
 }
