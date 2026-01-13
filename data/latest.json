@@ -8,19 +8,6 @@
   "data": [
     {
       "crtid": "KSH",
-      "sys": "民事",
-      "dpt": "黃",
-      "crmyy": "112",
-      "crmid": "重家上",
-      "crmno": "000013",
-      "dudt": "1150112",
-      "dutm": "1130",
-      "ducd": "0013",
-      "dunm": "第十法庭",
-      "dukd": "準備程序"
-    },
-    {
-      "crtid": "KSH",
       "sys": "刑事",
       "dpt": "強",
       "crmyy": "112",
@@ -243,6 +230,19 @@
     {
       "crtid": "KSH",
       "sys": "民事",
+      "dpt": "黃",
+      "crmyy": "112",
+      "crmid": "重家上",
+      "crmno": "000013",
+      "dudt": "1150304",
+      "dutm": "1030",
+      "ducd": "0004",
+      "dunm": "第四法庭",
+      "dukd": "準備程序"
+    },
+    {
+      "crtid": "KSH",
+      "sys": "民事",
       "dpt": "實",
       "crmyy": "112",
       "crmid": "勞上",
@@ -346,5 +346,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-01-12T04:21:58Z"
+  "updatedAt": "2026-01-13T03:55:51Z"
 }
