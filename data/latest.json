@@ -9,19 +9,6 @@
     {
       "crtid": "KSH",
       "sys": "刑事",
-      "dpt": "強",
-      "crmyy": "112",
-      "crmid": "金上重訴",
-      "crmno": "000004",
-      "dudt": "1150113",
-      "dutm": "1600",
-      "ducd": "0005",
-      "dunm": "第五法庭",
-      "dukd": "調查"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "刑事",
       "dpt": "愛",
       "crmyy": "112",
       "crmid": "上訴",
@@ -346,5 +333,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-01-13T03:55:51Z"
+  "updatedAt": "2026-01-14T04:15:16Z"
 }
