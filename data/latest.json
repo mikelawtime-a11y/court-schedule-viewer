@@ -8,45 +8,6 @@
   "data": [
     {
       "crtid": "KSH",
-      "sys": "刑事",
-      "dpt": "愛",
-      "crmyy": "112",
-      "crmid": "上訴",
-      "crmno": "000138",
-      "dudt": "1150114",
-      "dutm": "1550",
-      "ducd": "0009",
-      "dunm": "第九法庭",
-      "dukd": "準備程序"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
-      "dpt": "地",
-      "crmyy": "112",
-      "crmid": "上",
-      "crmno": "000251",
-      "dudt": "1150114",
-      "dutm": "1600",
-      "ducd": "0002",
-      "dunm": "第二法庭",
-      "dukd": "宣判"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
-      "dpt": "金",
-      "crmyy": "112",
-      "crmid": "家上更一",
-      "crmno": "000002",
-      "dudt": "1150114",
-      "dutm": "1600",
-      "ducd": "0002",
-      "dunm": "第二法庭",
-      "dukd": "宣判"
-    },
-    {
-      "crtid": "KSH",
       "sys": "民事",
       "dpt": "宇",
       "crmyy": "112",
@@ -333,5 +294,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-01-14T04:15:16Z"
+  "updatedAt": "2026-01-15T04:08:27Z"
 }
