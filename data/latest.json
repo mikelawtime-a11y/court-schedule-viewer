@@ -9,19 +9,6 @@
     {
       "crtid": "KSH",
       "sys": "民事",
-      "dpt": "宇",
-      "crmyy": "112",
-      "crmid": "重家上",
-      "crmno": "000007",
-      "dudt": "1150116",
-      "dutm": "1030",
-      "ducd": "0001",
-      "dunm": "第一法庭",
-      "dukd": "準備程序"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
       "dpt": "荒",
       "crmyy": "112",
       "crmid": "重家上更一",
@@ -307,5 +294,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-01-16T03:57:14Z"
+  "updatedAt": "2026-01-17T03:47:26Z"
 }
