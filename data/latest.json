@@ -8,32 +8,6 @@
   "data": [
     {
       "crtid": "KSH",
-      "sys": "刑事",
-      "dpt": "愛",
-      "crmyy": "112",
-      "crmid": "上訴",
-      "crmno": "000138",
-      "dudt": "1150304",
-      "dutm": "1000",
-      "ducd": "0009",
-      "dunm": "第九法庭",
-      "dukd": "宣判"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
-      "dpt": "黃",
-      "crmyy": "112",
-      "crmid": "重家上",
-      "crmno": "000013",
-      "dudt": "1150304",
-      "dutm": "1030",
-      "ducd": "0004",
-      "dunm": "第四法庭",
-      "dukd": "準備程序"
-    },
-    {
-      "crtid": "KSH",
       "sys": "民事",
       "dpt": "實",
       "crmyy": "112",
@@ -268,5 +242,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-03-04T02:48:32Z"
+  "updatedAt": "2026-03-05T02:50:25Z"
 }
