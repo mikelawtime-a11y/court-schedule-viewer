@@ -9,19 +9,6 @@
     {
       "crtid": "KSH",
       "sys": "民事",
-      "dpt": "宇",
-      "crmyy": "112",
-      "crmid": "金訴",
-      "crmno": "000001",
-      "dudt": "1150513",
-      "dutm": "0940",
-      "ducd": "0002",
-      "dunm": "第二法庭",
-      "dukd": "言詞辯論"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
       "dpt": "光",
       "crmyy": "112",
       "crmid": "重上",
@@ -109,8 +96,21 @@
       "ducd": "0004",
       "dunm": "第四法庭",
       "dukd": "準備程序"
+    },
+    {
+      "crtid": "KSH",
+      "sys": "民事",
+      "dpt": "實",
+      "crmyy": "112",
+      "crmid": "勞上",
+      "crmno": "000038",
+      "dudt": "1150722",
+      "dutm": "1530",
+      "ducd": "0004",
+      "dunm": "第四法庭",
+      "dukd": "言詞辯論"
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-05-13T04:08:51Z"
+  "updatedAt": "2026-05-14T04:08:32Z"
 }
