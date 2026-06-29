@@ -87,6 +87,19 @@
     {
       "crtid": "KSH",
       "sys": "民事",
+      "dpt": "洪",
+      "crmyy": "112",
+      "crmid": "重上",
+      "crmno": "000085",
+      "dudt": "1150729",
+      "dutm": "1420",
+      "ducd": "0003",
+      "dunm": "第三法庭",
+      "dukd": "言詞辯論"
+    },
+    {
+      "crtid": "KSH",
+      "sys": "民事",
       "dpt": "光",
       "crmyy": "112",
       "crmid": "重上",
@@ -112,5 +125,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-06-28T04:45:45Z"
+  "updatedAt": "2026-06-29T04:54:59Z"
 }
