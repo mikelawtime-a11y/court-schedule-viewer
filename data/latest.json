@@ -122,8 +122,21 @@
       "ducd": "0004",
       "dunm": "第四法庭",
       "dukd": "準備程序"
+    },
+    {
+      "crtid": "KSH",
+      "sys": "民事",
+      "dpt": "荒",
+      "crmyy": "112",
+      "crmid": "上易",
+      "crmno": "000323",
+      "dudt": "1151015",
+      "dutm": "0940",
+      "ducd": "0002",
+      "dunm": "第二法庭",
+      "dukd": "準備程序"
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-07-06T04:23:09Z"
+  "updatedAt": "2026-07-07T04:12:01Z"
 }
