@@ -9,20 +9,6 @@
     {
       "crtid": "KSH",
       "sys": "民事",
-      "dpt": "洪",
-      "crmyy": "112",
-      "crmid": "重上",
-      "crmno": "000085",
-      "dudt": "1150812",
-      "dutm": "1630",
-      "ducd": "0003",
-      "dunm": "第三法庭",
-      "dukd": "宣判",
-      "rsn": "分割共有物"
-    },
-    {
-      "crtid": "KSH",
-      "sys": "民事",
       "dpt": "光",
       "crmyy": "112",
       "crmid": "重上",
@@ -106,5 +92,5 @@
     }
   ],
   "pageInfo": null,
-  "updatedAt": "2026-08-12T02:37:16Z"
+  "updatedAt": "2026-08-13T02:39:34Z"
 }
